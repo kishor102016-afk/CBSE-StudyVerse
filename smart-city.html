@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Smart City Simulator - design a futuristic city, manage resources and watch your city score change.">
+<title>Smart City Simulator | CBSE StudyVerse</title>
+<style>
+:root{--bg:#07111f;--panel:#0d1b2e;--panel2:#10243c;--text:#eef6ff;--muted:#91a7c2;--accent:#38e8c1;--accent2:#69a7ff;--warn:#ffd166;--danger:#ff7188}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;background:radial-gradient(circle at 20% 10%,#12375a 0,transparent 35%),radial-gradient(circle at 90% 20%,#193c48 0,transparent 30%),var(--bg);color:var(--text);min-height:100vh}
+a{color:inherit;text-decoration:none}.nav{height:68px;padding:0 5vw;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #203651;background:#07111fcc;backdrop-filter:blur(14px);position:sticky;top:0;z-index:10}.brand{font-weight:800;letter-spacing:-.4px}.brand span{color:var(--accent)}.back{color:var(--muted);font-size:14px}
+.hero{padding:48px 5vw 24px;display:flex;gap:30px;align-items:end;max-width:1500px;margin:auto}.hero h1{font-size:clamp(38px,6vw,72px);line-height:.95;margin:10px 0;background:linear-gradient(90deg,#fff,var(--accent),var(--accent2));-webkit-background-clip:text;color:transparent}.hero p{max-width:700px;color:var(--muted);font-size:17px;line-height:1.6}.badge{display:inline-flex;padding:8px 12px;border:1px solid #2d4a69;border-radius:999px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:1px}
+.app{max-width:1500px;margin:auto;padding:24px 5vw 70px;display:grid;grid-template-columns:300px 1fr;gap:20px}.panel{background:linear-gradient(145deg,#0c1b2d,#0a1627);border:1px solid #203b58;border-radius:22px;box-shadow:0 20px 60px #0005}.controls{padding:22px}.controls h2,.dashboard h2{font-size:17px;margin:0 0 18px}.control{margin:18px 0}.control label{display:flex;justify-content:space-between;font-size:13px;color:#b9c9da;margin-bottom:8px}.control b{color:var(--text)}input[type=range]{width:100%;accent-color:var(--accent)}.building-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}.build{padding:10px 8px;border:1px solid #26435f;background:#10233a;color:#dcecff;border-radius:12px;cursor:pointer;font-size:12px}.build:hover{border-color:var(--accent);transform:translateY(-1px)}.build.active{border-color:var(--accent);background:#113b3b}.btn{width:100%;padding:12px;border:0;border-radius:12px;background:linear-gradient(90deg,var(--accent),var(--accent2));font-weight:800;color:#06131e;cursor:pointer;margin-top:18px}.hint{font-size:11px;color:#718aa6;line-height:1.5;margin-top:14px}
+.dashboard{padding:18px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.stat{padding:14px;border:1px solid #203b58;border-radius:16px;background:#0c1c30}.stat small{display:block;color:var(--muted);font-size:11px}.stat strong{display:block;font-size:25px;margin-top:4px}.good{color:var(--accent)}.blue{color:var(--accent2)}.yellow{color:var(--warn)}
+.city-wrap{position:relative;border:1px solid #294866;border-radius:18px;overflow:hidden;background:#081626}.city{width:100%;aspect-ratio:16/9;display:grid;grid-template-columns:repeat(12,1fr);grid-template-rows:repeat(7,1fr);gap:5px;padding:10px;background:linear-gradient(135deg,#0a1b2b,#0c2430)}.tile{position:relative;border-radius:7px;min-height:25px;background:#102d42;border:1px solid #17435c;transition:.25s;overflow:hidden}.tile.road{background:#1a2938;border-color:#2f4152}.tile.park{background:linear-gradient(135deg,#0d4b42,#146b4f);border-color:#25846b}.tile.water{background:linear-gradient(135deg,#0b4163,#0a6c88);border-color:#1985a6}.tile.solar{background:linear-gradient(135deg,#4e451a,#756524);border-color:#9e8835}.tile.school{background:linear-gradient(135deg,#24366a,#3b579c);border-color:#6684cf}.tile.hospital{background:linear-gradient(135deg,#542b45,#8a3e5e);border-color:#d06a8d}.tile.house{background:linear-gradient(135deg,#384f64,#526b80);border-color:#6d8499}.tile.factory{background:linear-gradient(135deg,#3c354d,#5a4e6b);border-color:#8b78aa}.tile .label{position:absolute;left:4px;bottom:3px;font-size:8px;color:#dbe9f5;opacity:.9}.legend{display:flex;gap:10px;flex-wrap:wrap;padding:12px 4px 0;color:#9db2c8;font-size:11px}.dot{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:4px}.insight{margin-top:14px;padding:15px;border:1px solid #24455e;border-radius:15px;background:#0d2136;color:#b7cbe0;font-size:13px;line-height:1.5}.insight b{color:#fff}.footer{max-width:1500px;margin:auto;padding:0 5vw 40px;color:#6f87a1;font-size:12px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.hero{padding-top:30px}.city{aspect-ratio:1.25}}
+@media(max-width:520px){.stats{grid-template-columns:1fr 1fr}.building-list{grid-template-columns:1fr 1fr}.hero h1{font-size:42px}}
+</style>
+</head>
+<body>
+<nav class="nav"><a class="brand" href="index.html">CBSE <span>StudyVerse</span></a><a class="back" href="index.html">← Back to StudyVerse</a></nav>
+<header class="hero"><div><span class="badge">INTERACTIVE CITY LAB · 2026</span><h1>Smart City<br>Simulator</h1><p>Design your own future city. Balance population, money, transport, green spaces and clean energy — then watch your city's score change in real time.</p></div></header>
+<main class="app">
+<aside class="panel controls">
+<h2>City Controls</h2>
+<div class="control"><label>Population <b id="popV">500k</b></label><input id="pop" type="range" min="100" max="1000" value="500" step="10"></div>
+<div class="control"><label>Budget <b id="budgetV">₹500M</b></label><input id="budget" type="range" min="100" max="1000" value="500" step="10"></div>
+<div class="control"><label>Green Spaces <b id="greenV">40%</b></label><input id="green" type="range" min="10" max="80" value="40"></div>
+<div class="control"><label>Public Transport <b id="transportV">60%</b></label><input id="transport" type="range" min="10" max="100" value="60"></div>
+<h2 style="margin-top:25px">Add Infrastructure</h2>
+<div class="building-list">
+<button class="build" data-type="house">🏠 Housing</button><button class="build" data-type="school">🏫 School</button>
+<button class="build" data-type="hospital">🏥 Hospital</button><button class="build" data-type="park">🌳 Park</button>
+<button class="build" data-type="solar">☀️ Solar</button><button class="build" data-type="water">💧 Water</button>
+<button class="build" data-type="factory">🏭 Industry</button><button class="build" data-type="road">🛣️ Road</button>
+</div>
+<button class="btn" id="generate">⚡ Generate My City</button>
+<p class="hint">Tip: More parks and public transport improve sustainability. Industry can increase jobs but may reduce your eco score.</p>
+</aside>
+<section class="panel dashboard">
+<h2>Your City Dashboard</h2>
+<div class="stats">
+<div class="stat"><small>SMART SCORE</small><strong class="good" id="smart">78</strong></div>
+<div class="stat"><small>GREEN SCORE</small><strong class="good" id="eco">72%</strong></div>
+<div class="stat"><small>HAPPINESS</small><strong class="yellow" id="happy">81%</strong></div>
+<div class="stat"><small>EST. JOBS</small><strong class="blue" id="jobs">125k</strong></div>
+</div>
+<div class="city-wrap"><div class="city" id="city"></div></div>
+<div class="legend">
+<span><i class="dot" style="background:#526b80"></i>Housing</span><span><i class="dot" style="background:#3b579c"></i>School</span><span><i class="dot" style="background:#8a3e5e"></i>Hospital</span><span><i class="dot" style="background:#146b4f"></i>Park</span><span><i class="dot" style="background:#756524"></i>Solar</span><span><i class="dot" style="background:#0a6c88"></i>Water</span><span><i class="dot" style="background:#5a4e6b"></i>Industry</span></div>
+<div class="insight" id="insight"><b>City insight:</b> Your city is on a strong path. Add clean energy and public transport to push the sustainability score higher.</div>
+</section>
+</main>
+<footer class="footer">Smart City Simulator is an independent educational project by CBSE StudyVerse. Explore, experiment and learn how city planning involves trade-offs.</footer>
+<script>
+const ids=['pop','budget','green','transport']; const city=document.getElementById('city'); let counts={house:0,school:0,hospital:0,park:0,solar:0,water:0,factory:0,road:0};
+const labels={house:'HOME',school:'SCHOOL',hospital:'CARE',park:'PARK',solar:'SOLAR',water:'WATER',factory:'IND',road:'ROAD'};
+function buildCity(){city.innerHTML='';const cells=84;for(let i=0;i<cells;i++){const d=document.createElement('div');d.className='tile';city.appendChild(d)}paint()}
+function paint(){const tiles=[...city.children];tiles.forEach(t=>{t.className='tile'});let pool=[];Object.keys(counts).forEach(k=>{for(let i=0;i<counts[k];i++)pool.push(k)});pool=pool.slice(0,84);pool.forEach((k,i)=>{tiles[i].classList.add(k);tiles[i].innerHTML='<span class="label">'+labels[k]+'</span>'});for(let i=pool.length;i<84;i++){tiles[i].classList.add(i%4===0?'road':'house');if(i%4!==0)tiles[i].innerHTML='<span class="label">HOME</span>'}}
+function calc(){const p=+pop.value,g=+green.value,t=+transport.value,b=+budget.value;const eco=Math.max(0,Math.min(100,Math.round(g*.65+t*.35)));const happy=Math.max(0,Math.min(100,Math.round(45+g*.18+t*.2+(b/1000)*10)));const smart=Math.max(0,Math.min(100,Math.round(eco*.42+happy*.38+(Math.min(b,800)/800)*20)));const jobs=Math.round(p*(.12+(counts.factory*.008)+(counts.school*.002)));document.getElementById('popV').textContent=p+'k';document.getElementById('budgetV').textContent='₹'+b+'M';document.getElementById('greenV').textContent=g+'%';document.getElementById('transportV').textContent=t+'%';document.getElementById('eco').textContent=eco+'%';document.getElementById('happy').textContent=happy+'%';document.getElementById('smart').textContent=smart;document.getElementById('jobs').textContent=jobs+'k';let msg=smart>85?'Excellent! Your city balances people, nature and infrastructure very well.':eco<45?'Try adding parks, solar power and better public transport to improve sustainability.':happy<65?'Residents need better services and mobility. Add schools, hospitals and public transport.':'Your city is on a strong path. Add clean energy and public transport to push the sustainability score higher.';document.getElementById('insight').innerHTML='<b>City insight:</b> '+msg}
+ids.forEach(id=>document.getElementById(id).addEventListener('input',calc));document.querySelectorAll('.build').forEach(btn=>btn.addEventListener('click',()=>{counts[btn.dataset.type]++;if(counts[btn.dataset.type]>12)counts[btn.dataset.type]=1;paint();calc()}));document.getElementById('generate').addEventListener('click',()=>{Object.keys(counts).forEach(k=>counts[k]=0);counts.house=18;counts.school=6;counts.hospital=3;counts.park=Math.max(4,Math.round(+green.value/8));counts.solar=Math.max(2,Math.round(+green.value/12));counts.water=3;counts.factory=3;counts.road=8;paint();calc()});buildCity();document.getElementById('generate').click();
+</script>
+</body></html>
